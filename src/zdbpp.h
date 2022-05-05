@@ -264,6 +264,10 @@ namespace zdb {
             except_wrapper( PreparedStatement_setInt(t_, parameterIndex, x) );
         }
         
+        void setUint(int parameterIndex, int x) {
+            except_wrapper( PreparedStatement_setUInt(t_, parameterIndex, x) );
+        }
+        
         void setLLong(int parameterIndex, long long x) {
             except_wrapper( PreparedStatement_setLLong(t_, parameterIndex, x) );
         }
@@ -310,6 +314,10 @@ namespace zdb {
         
         void bind(int parameterIndex, int x) {
             this->setInt(parameterIndex, x);
+        }
+        
+        void bind(int parameterIndex, unsigned int x) {
+            this->setUInt(parameterIndex, x);
         }
         
         void bind(int parameterIndex, long long x) {

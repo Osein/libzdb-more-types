@@ -90,8 +90,14 @@ void PreparedStatement_setString(T P, int parameterIndex, const char *x) {
 
 
 void PreparedStatement_setInt(T P, int parameterIndex, int x) {
-	assert(P);
+    assert(P);
         P->op->setInt(P->D, parameterIndex, x);
+}
+
+
+void PreparedStatement_setUInt(T P, int parameterIndex, int x) {
+    assert(P);
+        P->op->setUInt(P->D, parameterIndex, x);
 }
 
 

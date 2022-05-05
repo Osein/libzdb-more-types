@@ -132,6 +132,17 @@ static void _setInt(T P, int parameterIndex, int x) {
 }
 
 
+static void _setUInt(T P, int parameterIndex, int x) {
+        assert(P);
+        int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
+        P->params[i].type.integer = x;
+        P->bind[i].buffer_type = MYSQL_TYPE_LONG;
+        P->bind[i].buffer = &P->params[i].type.integer;
+        P->bind[i].is_null = 0;
+        P->bind[i].is_unsigned = 1;
+}
+
+
 static void _setLLong(T P, int parameterIndex, long long x) {
         assert(P);
         int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
