@@ -264,7 +264,7 @@ namespace zdb {
             except_wrapper( PreparedStatement_setInt(t_, parameterIndex, x) );
         }
         
-        void setUint(int parameterIndex, int x) {
+        void setUInt(int parameterIndex, int x) {
             except_wrapper( PreparedStatement_setUInt(t_, parameterIndex, x) );
         }
         

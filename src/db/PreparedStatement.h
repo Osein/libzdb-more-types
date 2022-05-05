@@ -151,7 +151,7 @@ void PreparedStatement_setString(T P, int parameterIndex, const char *x);
 
 /**
  * Sets the <i>in</i> parameter at index <code>parameterIndex</code> to the
- * given int value. 
+ * given int value.
  * In general, on both 32 and 64 bits architecture, <code>int</code> is 4 bytes
  * or 32 bits and <code>long long</code> is 8 bytes or 64 bits. A
  * <code>long</code> type is usually equal to <code>int</code> on 32 bits
@@ -166,6 +166,25 @@ void PreparedStatement_setString(T P, int parameterIndex, const char *x);
  * @see SQLException.h
  */
 void PreparedStatement_setInt(T P, int parameterIndex, int x);
+
+
+/**
+ * Sets the <i>in</i> parameter at index <code>parameterIndex</code> to the
+ * given int value.
+ * In general, on both 32 and 64 bits architecture, <code>int</code> is 4 bytes
+ * or 32 bits and <code>long long</code> is 8 bytes or 64 bits. A
+ * <code>long</code> type is usually equal to <code>int</code> on 32 bits
+ * architecture and equal to <code>long long</code> on 64 bits architecture.
+ * However, the width of integer types are architecture and compiler dependent.
+ * The above is usually true, but not necessarily.
+ * @param P A PreparedStatement object
+ * @param parameterIndex The first parameter is 1, the second is 2,..
+ * @param x The int value to set
+ * @exception SQLException If a database access error occurs or if parameter
+ * index is out of range
+ * @see SQLException.h
+ */
+void PreparedStatement_setUInt(T P, int parameterIndex, int x);
 
 
 /**
