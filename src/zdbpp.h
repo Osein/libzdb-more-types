@@ -368,10 +368,6 @@ namespace zdb {
             this->setDouble(parameterIndex, x);
         }
         
-        void bind(int parameterIndex, time_t x) {
-            this->setTimestamp(parameterIndex, x);
-        }
-        
         //blob
         void bind(int parameterIndex, std::tuple<const void *, int> x) {
             auto [blob, size] = x;
