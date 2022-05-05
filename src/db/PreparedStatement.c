@@ -89,21 +89,51 @@ void PreparedStatement_setString(T P, int parameterIndex, const char *x) {
 }
 
 
-void PreparedStatement_setInt(T P, int parameterIndex, int x) {
+void PreparedStatement_setInt8(T P, int parameterIndex, int8_t x) {
     assert(P);
-        P->op->setInt(P->D, parameterIndex, x);
+        P->op->setInt8(P->D, parameterIndex, x);
 }
 
 
-void PreparedStatement_setUInt(T P, int parameterIndex, int x) {
+void PreparedStatement_setUInt8(T P, int parameterIndex, uint8_t x) {
     assert(P);
-        P->op->setUInt(P->D, parameterIndex, x);
+        P->op->setUInt8(P->D, parameterIndex, x);
 }
 
 
-void PreparedStatement_setLLong(T P, int parameterIndex, long long x) {
-	assert(P);
-        P->op->setLLong(P->D, parameterIndex, x);
+void PreparedStatement_setInt16(T P, int parameterIndex, int16_t x) {
+    assert(P);
+        P->op->setInt16(P->D, parameterIndex, x);
+}
+
+
+void PreparedStatement_setUInt16(T P, int parameterIndex, uint16_t x) {
+    assert(P);
+        P->op->setUInt16(P->D, parameterIndex, x);
+}
+
+
+void PreparedStatement_setInt32(T P, int parameterIndex, int32_t x) {
+    assert(P);
+        P->op->setInt32(P->D, parameterIndex, x);
+}
+
+
+void PreparedStatement_setUInt32(T P, int parameterIndex, uint32_t x) {
+    assert(P);
+        P->op->setUInt32(P->D, parameterIndex, x);
+}
+
+
+void PreparedStatement_setInt64(T P, int parameterIndex, int64_t x) {
+    assert(P);
+        P->op->setInt64(P->D, parameterIndex, x);
+}
+
+
+void PreparedStatement_setUInt64(T P, int parameterIndex, uint64_t x) {
+    assert(P);
+        P->op->setUInt64(P->D, parameterIndex, x);
 }
 
 

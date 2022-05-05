@@ -260,16 +260,36 @@ namespace zdb {
             except_wrapper( PreparedStatement_setString(t_, parameterIndex, x) );
         }
         
-        void setInt(int parameterIndex, int x) {
-            except_wrapper( PreparedStatement_setInt(t_, parameterIndex, x) );
+        void setInt8(int parameterIndex, int8_t x) {
+            except_wrapper( PreparedStatement_setInt8(t_, parameterIndex, x) );
         }
         
-        void setUInt(int parameterIndex, int x) {
-            except_wrapper( PreparedStatement_setUInt(t_, parameterIndex, x) );
+        void setUInt8(int parameterIndex, uint8_t x) {
+            except_wrapper( PreparedStatement_setUInt8(t_, parameterIndex, x) );
         }
         
-        void setLLong(int parameterIndex, long long x) {
-            except_wrapper( PreparedStatement_setLLong(t_, parameterIndex, x) );
+        void setInt16(int parameterIndex, int16_t x) {
+            except_wrapper( PreparedStatement_setInt16(t_, parameterIndex, x) );
+        }
+        
+        void setUInt16(int parameterIndex, uint16_t x) {
+            except_wrapper( PreparedStatement_setUInt16(t_, parameterIndex, x) );
+        }
+        
+        void setInt32(int parameterIndex, int32_t x) {
+            except_wrapper( PreparedStatement_setInt32(t_, parameterIndex, x) );
+        }
+        
+        void setUInt32(int parameterIndex, uint32_t x) {
+            except_wrapper( PreparedStatement_setUInt32(t_, parameterIndex, x) );
+        }
+        
+        void setInt64(int parameterIndex, int64_t x) {
+            except_wrapper( PreparedStatement_setInt64(t_, parameterIndex, x) );
+        }
+        
+        void setUInt64(int parameterIndex, uint64_t x) {
+            except_wrapper( PreparedStatement_setUInt64(t_, parameterIndex, x) );
         }
         
         void setDouble(int parameterIndex, double x) {
@@ -312,16 +332,36 @@ namespace zdb {
             this->setString(parameterIndex, x.c_str());
         }
         
-        void bind(int parameterIndex, int x) {
-            this->setInt(parameterIndex, x);
+        void bind(int parameterIndex, int8_t x) {
+            this->setInt8(parameterIndex, x);
         }
         
-        void bind(int parameterIndex, unsigned int x) {
-            this->setUInt(parameterIndex, x);
+        void bind(int parameterIndex, uint8_t x) {
+            this->setUInt8(parameterIndex, x);
         }
         
-        void bind(int parameterIndex, long long x) {
-            this->setLLong(parameterIndex, x);
+        void bind(int parameterIndex, int16_t x) {
+            this->setInt16(parameterIndex, x);
+        }
+        
+        void bind(int parameterIndex, uint16_t x) {
+            this->setUInt16(parameterIndex, x);
+        }
+        
+        void bind(int parameterIndex, int32_t x) {
+            this->setInt32(parameterIndex, x);
+        }
+        
+        void bind(int parameterIndex, uint32_t x) {
+            this->setUInt32(parameterIndex, x);
+        }
+        
+        void bind(int parameterIndex, int64_t x) {
+            this->setInt64(parameterIndex, x);
+        }
+        
+        void bind(int parameterIndex, uint64_t x) {
+            this->setUInt64(parameterIndex, x);
         }
         
         void bind(int parameterIndex, double x) {

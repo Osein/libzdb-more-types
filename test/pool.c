@@ -178,16 +178,16 @@ static void testPool(const char *testURL) {
                 assert(PreparedStatement_getParameterCount(pre) == 2);
                 for (i = 0; images[i]; i++) {
                         PreparedStatement_setBlob(pre, 1, images[i], (int)strlen(images[i])+1);
-                        PreparedStatement_setInt(pre, 2, i + 1);
+                        PreparedStatement_setInt32(pre, 2, i + 1);
                         PreparedStatement_execute(pre);
                 }
                 /* Add a database null blob value for id = 5 */
                 PreparedStatement_setBlob(pre, 1, NULL, 0);
-                PreparedStatement_setInt(pre, 2, 5);
+                PreparedStatement_setInt32(pre, 2, 5);
                 PreparedStatement_execute(pre);
                 /* Add a database null string value for id = 1 */
                 PreparedStatement_setString(pre, 1, NULL);
-                PreparedStatement_setInt(pre, 2, 1);
+                PreparedStatement_setInt32(pre, 2, 1);
                 PreparedStatement_execute(pre);
                 /* Add a large blob */
                 memset(blob, 'x', 8192);
@@ -195,7 +195,7 @@ static void testPool(const char *testURL) {
                 /* Mark start and end */
                 *blob='S'; blob[8190] = 'E';
                 PreparedStatement_setBlob(pre, 1, blob, 8192);
-                PreparedStatement_setInt(pre, 2, i + 1);
+                PreparedStatement_setInt32(pre, 2, i + 1);
                 PreparedStatement_execute(pre);
                 printf("\tResult: prepared statement successfully executed\n");
                 Connection_close(con);
@@ -269,7 +269,7 @@ static void testPool(const char *testURL) {
                 Connection_setMaxRows(con, 0);
                 PreparedStatement_T pre = Connection_prepareStatement(con, "select name from zild_t where id=?");
                 assert(pre);
-                PreparedStatement_setInt(pre, 1, 2);
+                PreparedStatement_setInt32(pre, 1, 2);
                 ResultSet_T names = PreparedStatement_executeQuery(pre);
                 assert(names);
                 assert(ResultSet_next(names));
@@ -277,7 +277,7 @@ static void testPool(const char *testURL) {
                 printf("success\n");
                 
                 printf("\tResult: check prepared statement re-execute..");
-                PreparedStatement_setInt(pre, 1, 1);
+                PreparedStatement_setInt32(pre, 1, 1);
                 names = PreparedStatement_executeQuery(pre);
                 assert(names);
                 assert(ResultSet_next(names));
@@ -547,7 +547,7 @@ static void testPool(const char *testURL) {
                         assert((con = ConnectionPool_getConnection(pool)));
                         PreparedStatement_T p = Connection_prepareStatement(con, "update zild_t set name = ? where id = ?;");
                         printf("\tTesting: Parameter index out of range.. ");
-                        PreparedStatement_setInt(p, 3, 123);
+                        PreparedStatement_setInt32(p, 3, 123);
                         printf("\tResult: Test failed -- exception not thrown\n");
                         exit(1);
                 }

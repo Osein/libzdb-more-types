@@ -40,8 +40,14 @@ typedef struct Pop_T {
         const char *name;
         void (*free)(T *P);
         void (*setString)(T P, int parameterIndex, const char *x);
-        void (*setInt)(T P, int parameterIndex, int x);
-        void (*setUInt)(T P, int parameterIndex, int x);
+        void (*setInt8)(T P, int parameterIndex, int8_t x);
+        void (*setUInt8)(T P, int parameterIndex, uint8_t x);
+        void (*setInt16)(T P, int parameterIndex, int16_t x);
+        void (*setUInt16)(T P, int parameterIndex, uint16_t x);
+        void (*setInt32)(T P, int parameterIndex, int32_t x);
+        void (*setUInt32)(T P, int parameterIndex, uint32_t x);
+        void (*setInt64)(T P, int parameterIndex, int64_t x);
+        void (*setUInt64)(T P, int parameterIndex, uint64_t x);
         void (*setLLong)(T P, int parameterIndex, long long x);
         void (*setDouble)(T P, int parameterIndex, double x);
         void (*setTimestamp)(T P, int parameterIndex, time_t timestamp);

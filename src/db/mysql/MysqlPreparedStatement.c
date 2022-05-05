@@ -45,7 +45,14 @@
 typedef struct param_t {
         union {
                 double real;
-                int integer;
+            int8_t int8;
+            uint8_t uint8;
+            int16_t int16;
+            uint16_t uint16;
+            int32_t int32;
+            uint32_t uint32;
+            int64_t int64;
+            uint64_t uint64;
                 long long llong;
                 MYSQL_TIME timestamp;
         } type;
@@ -122,34 +129,87 @@ static void _setString(T P, int parameterIndex, const char *x) {
 }
 
 
-static void _setInt(T P, int parameterIndex, int x) {
+static void _setInt8(T P, int parameterIndex, int8_t x) {
         assert(P);
         int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
-        P->params[i].type.integer = x;
-        P->bind[i].buffer_type = MYSQL_TYPE_LONG;
-        P->bind[i].buffer = &P->params[i].type.integer;
+        P->params[i].type.int8 = x;
+        P->bind[i].buffer_type = MYSQL_TYPE_TINY;
+        P->bind[i].buffer = &P->params[i].type.int8;
         P->bind[i].is_null = 0;
 }
 
 
-static void _setUInt(T P, int parameterIndex, int x) {
+static void _setUInt8(T P, int parameterIndex, uint8_t x) {
         assert(P);
         int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
-        P->params[i].type.integer = x;
-        P->bind[i].buffer_type = MYSQL_TYPE_LONG;
-        P->bind[i].buffer = &P->params[i].type.integer;
+        P->params[i].type.uint8 = x;
+        P->bind[i].buffer_type = MYSQL_TYPE_TINY;
+        P->bind[i].buffer = &P->params[i].type.uint8;
         P->bind[i].is_null = 0;
         P->bind[i].is_unsigned = 1;
 }
 
 
-static void _setLLong(T P, int parameterIndex, long long x) {
+static void _setInt16(T P, int parameterIndex, int16_t x) {
         assert(P);
         int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
-        P->params[i].type.llong = x;
-        P->bind[i].buffer_type = MYSQL_TYPE_LONGLONG;
-        P->bind[i].buffer = &P->params[i].type.llong;
+        P->params[i].type.int16 = x;
+        P->bind[i].buffer_type = MYSQL_TYPE_SHORT;
+        P->bind[i].buffer = &P->params[i].type.int16;
         P->bind[i].is_null = 0;
+}
+
+
+static void _setUInt16(T P, int parameterIndex, uint16_t x) {
+        assert(P);
+        int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
+        P->params[i].type.uint16 = x;
+        P->bind[i].buffer_type = MYSQL_TYPE_SHORT;
+        P->bind[i].buffer = &P->params[i].type.uint16;
+        P->bind[i].is_null = 0;
+        P->bind[i].is_unsigned = 1;
+}
+
+
+static void _setInt32(T P, int parameterIndex, int32_t x) {
+        assert(P);
+        int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
+        P->params[i].type.int32 = x;
+        P->bind[i].buffer_type = MYSQL_TYPE_LONG;
+        P->bind[i].buffer = &P->params[i].type.int32;
+        P->bind[i].is_null = 0;
+}
+
+
+static void _setUInt32(T P, int parameterIndex, uint32_t x) {
+        assert(P);
+        int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
+        P->params[i].type.uint32 = x;
+        P->bind[i].buffer_type = MYSQL_TYPE_LONG;
+        P->bind[i].buffer = &P->params[i].type.uint32;
+        P->bind[i].is_null = 0;
+        P->bind[i].is_unsigned = 1;
+}
+
+
+static void _setInt64(T P, int parameterIndex, int64_t x) {
+        assert(P);
+        int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
+        P->params[i].type.int64 = x;
+        P->bind[i].buffer_type = MYSQL_TYPE_LONGLONG;
+        P->bind[i].buffer = &P->params[i].type.int64;
+        P->bind[i].is_null = 0;
+}
+
+
+static void _setUInt64(T P, int parameterIndex, uint64_t x) {
+        assert(P);
+        int i = checkAndSetParameterIndex(parameterIndex, P->parameterCount);
+        P->params[i].type.uint64 = x;
+        P->bind[i].buffer_type = MYSQL_TYPE_LONGLONG;
+        P->bind[i].buffer = &P->params[i].type.uint64;
+        P->bind[i].is_null = 0;
+        P->bind[i].is_unsigned = 1;
 }
 
 
@@ -253,8 +313,14 @@ const struct Pop_T mysqlpops = {
         .name           = "mysql",
         .free           = _free,
         .setString      = _setString,
-        .setInt         = _setInt,
-        .setLLong       = _setLLong,
+        .setInt8        = _setInt8,
+        .setUInt8       = _setUInt8,
+        .setInt16       = _setInt16,
+        .setUInt16      = _setUInt16,
+        .setInt32       = _setInt32,
+        .setUInt32      = _setUInt32,
+        .setInt64       = _setInt64,
+        .setUInt64      = _setUInt64,
         .setDouble      = _setDouble,
         .setTimestamp   = _setTimestamp,
         .setBlob        = _setBlob,
